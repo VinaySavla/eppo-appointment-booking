@@ -5,6 +5,7 @@ import Login from "./components/login";
 import SignUp from "./components/SignUp";
 import Checkout from "./Components_Payment/Checkout";
 import Otp from "./components/otpverification";
+import Maingrid from "./components/maingrid";
 
 import {
     createBrowserRouter,
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
     {
         path :"/Checkout",
         element: <Checkout/>,
+    },
+    {
+        path :"/Professionals",
+        element: <Maingrid/>,
     }
 ]);
 
