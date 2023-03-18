@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Inputbox({type, className, placeholder, onChange}) {
+function Inputbox({type, className, placeholder, onChange, rows}) {
     return (
         <input
             type={type}
@@ -8,6 +8,7 @@ function Inputbox({type, className, placeholder, onChange}) {
             placeholder={placeholder}
             style={styles.inputbx}
             onChange={onChange}
+            rows={rows}
         />
     );
 }

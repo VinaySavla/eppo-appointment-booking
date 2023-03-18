@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer } from 'react';
 import Navbar from "./navbar";
 import FooterAS from "./footer";
 import homework from "../assets/Home.jpg";
@@ -29,14 +29,6 @@ function SIgnUp(props) {
                 return { ...currentState, alerttxt : action.value}
             case 'city':
                 return { ...currentState, city : action.value}
-            case 'profession':
-                return { ...currentState, profession : action.value}
-            case 'experience':
-                return { ...currentState, experience : action.value}
-            case 'about':
-                return { ...currentState, about : action.value}
-
-
         }
 
         return currentState
@@ -65,22 +57,12 @@ function SIgnUp(props) {
     function updateCity(city){
         dispatch({type : 'city', value: city.target.value});
     }
-    function updateProfession(profession){
-        dispatch({type : 'profession', value: profession.target.value});
-    }
-    function updateExperience(experience){
-        dispatch({type : 'experience', value: experience.target.value});
-    }
-    function updateAbout(about){
-        dispatch({type : 'about', value: about.target.value});
-    }
 
 
 
 
 
-    const [state, dispatch] = useReducer(reducer, { name: '' , password: '', passwordAgain:'', address: '', email:'', phone: 0, alerttxt: '', city: '', profession:'', experience:'',  about:''});
-    const [isChecked, setIsChecked] = useState(false);
+    const [state, dispatch] = useReducer(reducer, { name: '' , password: '', passwordAgain:'', address: '', email:'', phone: 0, alerttxt: '', city: ''});
 
     const submit = async () =>{
 
@@ -142,7 +124,7 @@ function SIgnUp(props) {
                 <Row>
 
                     <Col  style={styles.sideForm}>
-                        <h3 style={styles.subheadinggrid}>Sign Up ></h3>
+                        <h3 style={styles.subheadinggrid}>Sign Up</h3>
                         <div className="mb-3">
                             <Formlabel text='Name'/>
                             <Inputbox type="text"
@@ -151,19 +133,9 @@ function SIgnUp(props) {
                                       onChange={updateName}
                             />
                         </div>
-                        <div className="form-check" style={{paddingBottom:'1vh'}}>
-                            <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked"
-                                   checked={isChecked} onChange={() => {
-                                setIsChecked(!isChecked)
-                            }}
-                                   style={{height:'3vh', width:'3vh'}}/>&nbsp;
-                            <label className="form-check-label" htmlFor="flexCheckChecked" style={{height:'3vh', fontSize:'3vh'}}>
-                                I am a Service Provider
-                            </label>
-                        </div>
                         <Row>
 
-                        <Col>
+                        <Col >
 
                             <div className="mb-3">
                                 <Formlabel text='Email Address'/>
@@ -182,22 +154,6 @@ function SIgnUp(props) {
                                           onChange={updateCity}
                                 />
                             </div>
-                            {isChecked ? <div className="mb-3">
-                                <Formlabel text='Profession'/>
-                                <Inputbox type="text"
-                                className="form-control"
-                                placeholder="Enter Profession"
-                                onChange={updateProfession}
-                                />
-                                </div>: null}
-                            {isChecked ? <div className="mb-3">
-                                <Formlabel text='Experience'/>
-                                <Inputbox type="number"
-                                          className="form-control"
-                                          placeholder="No of years"
-                                          onChange={updateAddress}
-                                />
-                            </div>: null}
                             <div className="mb-3">
                                 <Formlabel text='Address'/>
                                 <Inputbox type="text"
@@ -210,7 +166,7 @@ function SIgnUp(props) {
 
                         </Col>
                         <Col>
-                            <div className="mb-3" >
+                            <div className="mb-3">
                                 <Formlabel text='Mobile No'/>
                                 <Inputbox type="number"
                                           className="form-control"
@@ -234,17 +190,6 @@ function SIgnUp(props) {
                                           onChange={updatePasswordAgain}
                                 />
                             </div>
-
-                            {isChecked ? <div className="mb-3">
-                                <Formlabel text='About'/>
-                                <textarea
-                                    style={{height:'21vh'}}
-                                          rows="3"
-                                          className="form-control"
-                                          placeholder="No of years"
-                                          onChange={updateAddress}
-                                />
-                            </div>: null}
                         </Col>
                         </Row>
                         <div style={{paddingLeft:'10vw', paddingRight:'10vw'}}>
@@ -258,8 +203,6 @@ function SIgnUp(props) {
                 </Row>
             </div>
             <FooterAS/>
-
-
         </>
 
 
@@ -279,6 +222,7 @@ const styles = {
     sideForm:{
         padding:'3vh',
         background: '#FDFBE2',
+        height: '95vh',
         borderRadius: '5vh',
         paddingLeft:'5vw',
         paddingRight:'5vw',
