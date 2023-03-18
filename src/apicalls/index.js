@@ -1,12 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-function postPHP()
-{
-    axios.post("http://127.0.0.1/loginsignupgoated/api/demo.php", {
-        title: "Hello World!",
-        body: "This is a new post.",
-        email:"Goo",
-    })
-        .then((data) => { console.log(data.data.data); setResponse(data.data.data)});
+export const axiosInstance = axios.create({
+    baseURL: "http://192.168.0.160:3000/data",
+})
 
-}

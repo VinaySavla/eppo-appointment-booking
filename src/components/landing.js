@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from "./navbar";
 import Searchbar from "../subcomponents/searchbar";
 
@@ -18,8 +18,15 @@ import barber from '../assets/gridassets/barber.png'
 import electritian from '../assets/gridassets/electritian.png'
 import plumber from '../assets/gridassets/plumber.jpg'
 import carpenter from '../assets/gridassets/carpenter.png'
+import { checklogin } from "../functions/loginfunc";
 
 function Landing(props) {
+    useEffect(() => {
+        setLoggedIn(checklogin());
+    }, []);
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [user, setUser] = useState();
+
 
     const gridData = [
         {
@@ -52,7 +59,7 @@ function Landing(props) {
 
     return (
         <>
-            <Navbar/>
+            <Navbar loggedIn={loggedIn}/>
             <div style={styles.bodydiv}>
                 <Searchbar/>
             </div>

@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import Navbar from "./navbar";
 import FooterAS from "./footer";
 import homework from "../assets/Home.jpg";
@@ -7,9 +7,21 @@ import officeimg from "../assets/industrial-style-office.jpg";
 import Submitbtn from "../subcomponents/submitbtn";
 import Formlabel from "../subcomponents/formlabel";
 import Inputbox from "../subcomponents/inputbox";
+import { useNavigate, useNavigation } from "react-router-dom";
+import { register } from "../apicalls/users";
+import { checklogin } from "../functions/loginfunc";
 
 function SIgnUp(props) {
 
+    const [loggedIn, setLoggedIn] = useState(false);
+    useEffect(() => {
+
+        if(checklogin())
+        {
+            setLoggedIn(true);
+            window.location.href = '/';
+        }
+    }, []);
     function reducer(currentState, action) {
 
         switch (action.type){
@@ -78,9 +90,10 @@ function SIgnUp(props) {
 
 
 
-
+    const navigate = useNavigate();
     const [state, dispatch] = useReducer(reducer, { name: '' , password: '', passwordAgain:'', address: '', email:'', phone: 0, alerttxt: '', city: '', profession:'', experience:'',  about:''});
     const [isChecked, setIsChecked] = useState(false);
+    const [sent, setSent] = useState(false);
 
     const submit = async () =>{
 
@@ -115,29 +128,33 @@ function SIgnUp(props) {
             ))) {
             updateAlert("Please enter a valid mobile no!");
         }
-        else{
+
+        else if(!sent){
             updateAlert('')
             // navigation.navigate("Home")
-            // const name = state.name;
-            // const email = state.email;
-            // const password = state.password;
-            // const phoneno = state.phone;
-            // const response = await registerAPI({
-            //     name,
-            //     email,
-            //     password,
-            //     phoneno
-            // });
-            // if(await response.success){
-            //     console.log(response)
-            // }
+            const name = state.name;
+            const email = state.email;
+            const password = state.password;
+            const phone = state.phone;
+            const address = state.address;
+            const city = state.city;
+            setSent(true);
+            const rep = await register({
+                phone
+            });
+            if(rep.status == 'success'){
+                const payload = {
+                    name, email, password, phone, address, city
+                }
+                navigate('/otp',{ state: payload });
+            }
         }
 
 
     }
     return (
         <>
-            <Navbar/>
+            <Navbar loggedIn={loggedIn}/>
             <div style={styles.bodydiv}>
                 <Row>
 

@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import Navbar from "./navbar";
 import FooterAS from "./footer";
 import homework from "../assets/Home.jpg";
@@ -7,8 +7,19 @@ import officeimg from "../assets/industrial-style-office.jpg";
 import Submitbtn from "../subcomponents/submitbtn";
 import Formlabel from "../subcomponents/formlabel";
 import Inputbox from "../subcomponents/inputbox";
+import { checklogin } from "../functions/loginfunc";
 
 function Login(props) {
+    const [loggedIn, setLoggedIn] = useState(false);
+    useEffect(() => {
+
+        if(checklogin())
+        {
+            setLoggedIn(true);
+            window.location.href = '/';
+        }
+    }, []);
+
     function reducer(currentState, action) {
 
         switch (action.type) {
@@ -74,7 +85,7 @@ function Login(props) {
     };
     return (
         <>
-            <Navbar/>
+            <Navbar loggedIn={loggedIn}/>
             <div style={styles.bodydiv}>
                 <Row>
                     <Col sm={8}>
