@@ -39,14 +39,14 @@ function navibar({loggedIn}) {
 const styles ={
     Navlink:{
         fontSize: '250%',
-        color: '#06283D',
+        color: '#0A2647',
         fontFamily: 'Stick No Bills',
 
 
 },
     Navlink2:{
         fontSize: '250%',
-        color: '#F7D65A',
+        color: '#2C74B3',
         fontFamily: 'Stick No Bills',
 
 

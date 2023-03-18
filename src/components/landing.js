@@ -118,7 +118,7 @@ function Landing(props) {
 
 const styles = {
     bodydiv: {
-        background: '#F7D65A',
+        background: '#2C74B3',
         marginTop: '13vh',
         paddingTop: '30vh',
         paddingBottom: '30vh',
@@ -152,7 +152,7 @@ const styles = {
             paddingBottom: '7vh',
             textAlign: "center",
             fontFamily: 'Bungee Shade',
-            color: "#06283D",
+            color: "#0A2647",
             fontSize: '250%',
         },
     subheadinggrid:
@@ -160,9 +160,9 @@ const styles = {
             paddingTop: '1vh',
             textAlign: "center",
             fontFamily: 'Stick No Bills',
-            color: "#06283D",
+            color: "#0A2647",
             fontSize: '250%',
-            borderBottom: "3px solid #06283D",
+            borderBottom: "3px solid #0A2647",
         },
 
 }

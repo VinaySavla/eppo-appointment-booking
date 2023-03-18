@@ -42,7 +42,7 @@ function Maingrid(props) {
                                       placeholder="Search"
                                       id="searchbarinput"
                         />
-                        <Button className="search-button" style={{background:'#F7D65A', fontSize:'2vh', width:'5vw'}}>
+                        <Button className="search-button" style={{background:'#2C74B3', fontSize:'2vh', width:'5vw'}}>
                             <FontAwesomeIcon icon={faSearch}/>
                         </Button>
                         </InputGroup>

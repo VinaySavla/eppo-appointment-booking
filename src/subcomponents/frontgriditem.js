@@ -18,7 +18,7 @@ function Frontgriditem({image, text}) {
 
 const styles = {
     maindiv:{
-        background: '#F7D65A',
+        background: '#2C74B3',
         borderRadius: '2vh',
         height: '15vh',
         padding: '2vh',
@@ -29,6 +29,7 @@ const styles = {
         marginBottom: 'auto',
         fontFamily: 'Edu NSW ACT Foundation',
         fontSize: '125%',
+        color:'#ffffff',
         },
 
 }

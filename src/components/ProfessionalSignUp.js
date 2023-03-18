@@ -230,9 +230,9 @@ const styles = {
     subheadinggrid:
         {
             padding: '1vh',
-            borderBottom:'4px solid #06283D',
+            borderBottom:'4px solid #0A2647',
             fontFamily: 'Edu NSW ACT Foundation',
-            color: "#06283D",
+            color: "#0A2647",
             fontSize: '6vh',
         },
 }

@@ -36,7 +36,7 @@ const styles = {
             paddingTop: '1vh',
             textAlign: "center",
             fontFamily: 'Edu NSW ACT Foundation',
-            color: "#06283D",
+            color: "#0A2647",
             fontSize: '200%',
         },
 }
