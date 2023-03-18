@@ -32,7 +32,17 @@ export const userInfo = async()=>{
 
 export const verify = async(payload)=>{
   try {
-    const response = await axiosInstance.post('/verifyOtp',payload)
+    const response = await axiosInstance.post('/verifyUserOtp',payload)
+    return response.data
+
+  } catch (error) {
+    return error.response.data
+  }
+}
+
+export const verifyProfessional = async(payload)=>{
+  try {
+    const response = await axiosInstance.post('/verifyProfessionalOtp',payload)
     return response.data
 
   } catch (error) {

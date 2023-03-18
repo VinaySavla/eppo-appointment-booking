@@ -47,6 +47,8 @@ function SIgnUp(props) {
                 return { ...currentState, experience : action.value}
             case 'about':
                 return { ...currentState, about : action.value}
+            case 'Price':
+                return { ...currentState, about : action.value}
 
 
         }
@@ -86,12 +88,15 @@ function SIgnUp(props) {
     function updateAbout(about){
         dispatch({type : 'about', value: about.target.value});
     }
+    function updatePrice(about){
+        dispatch({type : 'Price', value: about.target.value});
+    }
 
 
 
 
     const navigate = useNavigate();
-    const [state, dispatch] = useReducer(reducer, { name: '' , password: '', passwordAgain:'', address: '', email:'', phone: 0, alerttxt: '', city: '', profession:'', experience:'',  about:''});
+    const [state, dispatch] = useReducer(reducer, { name: '' , password: '', passwordAgain:'', address: '', email:'', phone: 0, alerttxt: '', city: '', profession:'', experience:'',  about:'', Price:''});
     const [isChecked, setIsChecked] = useState(false);
     const [sent, setSent] = useState(false);
 
@@ -131,26 +136,59 @@ function SIgnUp(props) {
 
         else if(!sent){
             updateAlert('')
-            // navigation.navigate("Home")
-            const Name = state.name;
-            const Email = state.email;
-            const Password = state.password;
-            const MobileNumber = state.phone;
-            const Address = state.address;
-            const City = state.city;
-            // setSent(true);
-            const rep = await register({
-                MobileNumber
-            });
-            if(rep.return == true){
-                const payload = {
-                    Name, Email, Password, MobileNumber, Address, City
+            if(!isChecked)
+            {
+                const Name = state.name;
+                const Email = state.email;
+                const Password = state.password;
+                const MobileNumber = state.phone;
+                const Address = state.address;
+                const City = state.city;
+                const TypeOP = 'user';
+                setSent(true);
+                const rep = await register({
+                    MobileNumber
+                });
+                if(rep.return == true){
+                    const payload = {
+                        TypeOP, Name, Email, Password, MobileNumber, Address, City
+                    }
+                    navigate('/otp',{ state: payload });
                 }
-                navigate('/otp',{ state: payload });
+                else {
+                    console.log(rep);
+                }
             }
             else {
-                console.log(rep);
+                const Name = state.name;
+                const Email = state.email;
+                const Password = state.password;
+                const MobileNumber = state.phone;
+                const Address = state.address;
+                const City = state.city;
+                const Profession= state.profession;
+                const Experience = state.experience;
+                const About = state.about
+                const Price = state.Price;
+                const Rating = 0;
+                const TypeOP = 'pro';
+                setSent(true);
+                const rep = await register({
+                    MobileNumber
+                });
+                if(rep.return == true){
+                    const payload = {
+                        TypeOP, Name, Email, Password, MobileNumber, Address, City, Price, Profession, Experience, About, Rating
+                    }
+                    navigate('/otp',{ state: payload });
+                }
+                else {
+                    console.log(rep);
+                }
             }
+
+            // navigation.navigate("Home")
+
         }
 
 
@@ -218,6 +256,14 @@ function SIgnUp(props) {
                                           onChange={updateAddress}
                                 />
                             </div>: null}
+                            {isChecked ? <div className="mb-3">
+                                <Formlabel text='Charges'/>
+                                <Inputbox type="number"
+                                          className="form-control"
+                                          placeholder="Charges per session"
+                                          onChange={updateExperience}
+                                />
+                            </div>: null}
                             <div className="mb-3">
                                 <Formlabel text='Address'/>
                                 <Inputbox type="text"
@@ -258,11 +304,11 @@ function SIgnUp(props) {
                             {isChecked ? <div className="mb-3">
                                 <Formlabel text='About'/>
                                 <textarea
-                                    style={{height:'21vh'}}
-                                          rows="3"
+                                    style={{height:'37vh'}}
+                                          rows="7"
                                           className="form-control"
                                           placeholder="No of years"
-                                          onChange={updateAddress}
+                                          onChange={updateAbout}
                                 />
                             </div>: null}
                         </Col>

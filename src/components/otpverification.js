@@ -8,7 +8,7 @@ import Submitbtn from "../subcomponents/submitbtn";
 import Formlabel from "../subcomponents/formlabel";
 import Inputbox from "../subcomponents/inputbox";
 import { useLocation, useNavigate } from "react-router-dom";
-import { register, verify } from "../apicalls/users";
+import { register, verify, verifyProfessional } from "../apicalls/users";
 
 
 
@@ -17,17 +17,14 @@ function OtpVerify(props) {
 
 
     const {state} = useLocation();
+    const TypeOP = state.TypeOP;
+
+    console.log(TypeOP);
 
     const navigate =  useNavigate();
-    try {
 
-        const {   Name, Email, Password, MobileNumber, Address, City   } = state;
-    }catch (error)
-    {
-        navigate('/');
-    }
 
-    const {   Name, Email, Password, MobileNumber, Address, City } = state;
+
 
 
 
@@ -62,26 +59,52 @@ function OtpVerify(props) {
         }
         else if(!sent)
         {
+
             const OTP = reducerState.otp;
-            // setSent(true);
+            setSent(true);
             updateAlert("");
-            verify({
+
+            if(TypeOP == 'user')
+            {
+                const {   Name, Email, Password, MobileNumber, Address, City } = state;
+                verify({
                 Name, Email, Password, MobileNumber, Address, City, OTP
             }).then((response) => {
-                // console.log(response)
-                // console.log({
-                //     Name, Email, Password, MobileNumber, Address, City, OTP
-                // })
+
                 if(response.hasOwnProperty('createResponse'))
                 {
                     localStorage.setItem('Name', Name);
                     localStorage.setItem('MobileNo', MobileNumber);
+                    localStorage.setItem('TypeOP', TypeOP);
                     navigate('/');
                 }
                 else {
                     updateAlert("Authentication failed")
                 }
             });
+            }
+            else if(TypeOP =='pro')
+            {
+                const { Name, Email, Password, MobileNumber, Address, City, Price, Profession, Experience, About, Rating
+                } = state;
+                verifyProfessional({
+                    TypeOP, Name, Email, Password, MobileNumber, Address, City, Price, Profession, Experience, About, Rating, OTP
+                }).then((response) => {
+
+                    if(response.hasOwnProperty('createResponse'))
+                    {
+                        localStorage.setItem('Name', Name);
+                        localStorage.setItem('MobileNo', MobileNumber);
+                        localStorage.setItem('TypeOP', TypeOP);
+                        navigate('/');
+                    }
+                    else {
+                        updateAlert("Authentication failed")
+                    }
+                });
+            }
+
+
         }
 
     };

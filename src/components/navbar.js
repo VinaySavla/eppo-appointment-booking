@@ -9,8 +9,8 @@ import { useNavigate } from "react-router-dom";
 
 function navibar({loggedIn}) {
     function logout(){
-        localStorage.removeItem('name');
-        localStorage.removeItem('phone');
+        localStorage.removeItem('Name');
+        localStorage.removeItem('MobilePhone');
         window.location.href = '/';
     }
 
