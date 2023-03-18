@@ -1,0 +1,18 @@
+#location-dd
+{
+    background-color: #F7D65A;
+    max-width: 15vw;
+    border: none;
+    color: #06283D;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.search-button,.search-button:focus, .search-button:active
+{
+    background-color: #F7D65A;
+    /*fontFamily: 'Stick No Bills';*/
+    width: 10vw;
+    border: none;
+    color: #06283D;
+}
