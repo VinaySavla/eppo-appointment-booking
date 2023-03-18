@@ -1,8 +1,11 @@
 import React from "react";
 import { MDBCol, MDBContainer, MDBRow } from "mdb-react-ui-kit";
+import Navibar from "../navbar";
 
 export default function ShowReview() {
   return (
+    <>
+  
     <MDBContainer className="py-5">
       <MDBRow className="d-flex justify-content-center">
         <MDBCol md="10" xl="8" className="text-center">
@@ -46,6 +49,6 @@ export default function ShowReview() {
           <p className="font-italic font-weight-normal mb-0">- Teresa May</p>
         </MDBCol>
       </MDBRow>
-    </MDBContainer>
+    </MDBContainer> </>
   );
 }

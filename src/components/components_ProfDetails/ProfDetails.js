@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import Navibar from '../navbar';
 import {
   MDBCol,
   MDBContainer,
@@ -20,6 +21,8 @@ import {
 
 export default function ProfilePage() {
   return (
+    <>
+    <Navibar loggedIn={true}/>
     <section style={{ backgroundColor: '#eee' }}>
       <MDBContainer className="py-5">
         <MDBRow>
@@ -211,6 +214,6 @@ export default function ProfilePage() {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
-    </section>
+    </section> </>
   );
 }
