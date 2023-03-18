@@ -7,7 +7,7 @@ function Inputbox({type, className, placeholder, onChange}) {
             className={className}
             placeholder={placeholder}
             style={styles.inputbx}
-            onInput={onChange}
+            onChange={onChange}
         />
     );
 }
