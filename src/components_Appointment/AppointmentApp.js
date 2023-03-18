@@ -18,6 +18,7 @@ import {
 } from "material-ui/Stepper";
 import { RadioButton, RadioButtonGroup } from "material-ui/RadioButton";
 import axios from "axios";
+//import Navibar from "../components/navbar";
 
 const API_BASE = "http://localhost:8083/";
 
@@ -233,6 +234,7 @@ class AppointmentApp extends Component {
 
     return (
       <div style={{ margin: "12px 0" }}>
+        {/*<Navibar loggedIn={true}/>*/}
         <RaisedButton
           label={stepIndex === 2 ? "Finish" : "Next"}
           disableTouchRipple={true}

@@ -1,5 +1,5 @@
 import React from "react";
-// import Navibar from "../components/navbar";
+import Navibar from "../navbar";
 import {
   MDBCard,
   MDBCardBody,
@@ -24,9 +24,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 export default function ReviewForm() {
   return (
     <>
-    {/*<div>
-      <Navibar/>
-      </div>*/}
+    <Navibar loggedIn={true}/>
     <MDBContainer fluid className="py-5 gradient-custom">
       <MDBRow className="d-flex justify-content-center">
         <MDBCol md="12">
@@ -62,14 +60,9 @@ export default function ReviewForm() {
                             </h4>
                             <form>
                               
-                              <MDBInput wrapperClass='mb-4' textarea id='form4Example3' rows={6} label='Message' />
+                              <MDBInput wrapperClass='mb-6' textarea id='form4Example3' rows={60} label='Message' />
 
-                              <MDBCheckbox
-                                wrapperClass='d-flex justify-content-center mb-4'
-                                id='form4Example4'
-                                label='Send me a copy of this message'
-                                defaultChecked
-                              />
+                              
 
                               <Button type='submit' className='mb-4'>
                                 Submit
