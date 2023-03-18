@@ -219,14 +219,6 @@ const styles = {
         paddingLeft: '10vw',
         paddingRight: '10vw',
     },
-    sideHeader:{
-        fontFamily: 'Lobster',
-        color: '#FDFBE2',
-        fontSize: '500%',
-        textShadow: '7px 7px #06283D',
-        paddingTop: '15vh',
-    },
-
     sideForm:{
         padding:'3vh',
         background: '#FDFBE2',
@@ -241,7 +233,7 @@ const styles = {
             borderBottom:'4px solid #06283D',
             fontFamily: 'Edu NSW ACT Foundation',
             color: "#06283D",
-            fontSize: '280%',
+            fontSize: '6vh',
         },
 }
 

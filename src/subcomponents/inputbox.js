@@ -14,7 +14,7 @@ function Inputbox({type, className, placeholder, onChange}) {
 
 const styles = {
     inputbx:{
-        fontSize:'150%',
+        fontSize:'3vh',
     }
 }
 

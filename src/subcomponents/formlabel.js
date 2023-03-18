@@ -10,7 +10,7 @@ function Formlabel({text}) {
 
 const styles = {
     label: {
-        fontSize: '250%',
+        fontSize: '5vh',
         color:'#06283D',
         fontFamily:'Stick No Bills',
 }
