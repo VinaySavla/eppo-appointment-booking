@@ -12,7 +12,7 @@ import { register, verify } from "../apicalls/users";
 
 
 
-function OTP(props) {
+function OtpVerify(props) {
 
 
 
@@ -21,13 +21,13 @@ function OTP(props) {
     const navigate =  useNavigate();
     try {
 
-        const { name, email, password, phone, address } = state;
+        const {   Name, Email, Password, MobileNumber, Address, City   } = state;
     }catch (error)
     {
         navigate('/');
     }
 
-    const { name, email, password, phone, address, city } = state;
+    const {   Name, Email, Password, MobileNumber, Address, City } = state;
 
 
 
@@ -62,21 +62,24 @@ function OTP(props) {
         }
         else if(!sent)
         {
-            setSent(true);
+            const OTP = reducerState.otp;
+            // setSent(true);
             updateAlert("");
-            // console.log({name, email, password, phone, address, city});
-            const otp = reducerState.otp;
             verify({
-                    name, email, password, phone, address, otp, city
+                Name, Email, Password, MobileNumber, Address, City, OTP
             }).then((response) => {
-                if(response.status === 'success')
+                // console.log(response)
+                // console.log({
+                //     Name, Email, Password, MobileNumber, Address, City, OTP
+                // })
+                if(response.hasOwnProperty('createResponse'))
                 {
-                    localStorage.setItem('name', name);
-                    localStorage.setItem('phone', phone);
+                    localStorage.setItem('Name', Name);
+                    localStorage.setItem('MobileNo', MobileNumber);
                     navigate('/');
                 }
                 else {
-                    updateAlert(response.status)
+                    updateAlert("Authentication failed")
                 }
             });
         }
@@ -154,4 +157,4 @@ const styles = {
         },
 }
 
-export default OTP;
+export default OtpVerify;

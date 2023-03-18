@@ -132,21 +132,24 @@ function SIgnUp(props) {
         else if(!sent){
             updateAlert('')
             // navigation.navigate("Home")
-            const name = state.name;
-            const email = state.email;
-            const password = state.password;
-            const phone = state.phone;
-            const address = state.address;
-            const city = state.city;
-            setSent(true);
+            const Name = state.name;
+            const Email = state.email;
+            const Password = state.password;
+            const MobileNumber = state.phone;
+            const Address = state.address;
+            const City = state.city;
+            // setSent(true);
             const rep = await register({
-                phone
+                MobileNumber
             });
-            if(rep.status == 'success'){
+            if(rep.return == true){
                 const payload = {
-                    name, email, password, phone, address, city
+                    Name, Email, Password, MobileNumber, Address, City
                 }
                 navigate('/otp',{ state: payload });
+            }
+            else {
+                console.log(rep);
             }
         }
 

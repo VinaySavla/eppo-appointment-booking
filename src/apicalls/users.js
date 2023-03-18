@@ -12,7 +12,7 @@ export const login = async(payload)=>{
 
 export const register = async(payload)=>{
   try {
-    const response = await axiosInstance.post('/sendOtpApi.php',payload)
+    const response = await axiosInstance.post('/sendOtp',payload)
     return response.data
 
   } catch (error) {
@@ -32,7 +32,7 @@ export const userInfo = async()=>{
 
 export const verify = async(payload)=>{
   try {
-    const response = await axiosInstance.post('/verifyUserOtpApi.php',payload)
+    const response = await axiosInstance.post('/verifyOtp',payload)
     return response.data
 
   } catch (error) {
