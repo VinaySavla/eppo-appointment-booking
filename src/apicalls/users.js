@@ -1,8 +1,17 @@
 import { axiosInstance } from ".";
 
-export const login = async(payload)=>{
+export const userLogin = async(payload)=>{
   try {
-    const response = await axiosInstance.post('/api/users/login',payload)
+    const response = await axiosInstance.post('/userLogin',payload)
+    return response.data
+
+  } catch (error) {
+    return error.response.data
+  }
+}
+export const professionalLogin = async(payload)=>{
+  try {
+    const response = await axiosInstance.post('/professionalLogin',payload)
     return response.data
 
   } catch (error) {

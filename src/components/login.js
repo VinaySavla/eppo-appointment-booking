@@ -8,8 +8,11 @@ import Submitbtn from "../subcomponents/submitbtn";
 import Formlabel from "../subcomponents/formlabel";
 import Inputbox from "../subcomponents/inputbox";
 import { checklogin } from "../functions/loginfunc";
+import { professionalLogin, userLogin, verify } from "../apicalls/users";
+import { useNavigate } from "react-router-dom";
 
 function Login(props) {
+    const navigate = useNavigate();
     const [loggedIn, setLoggedIn] = useState(false);
     useEffect(() => {
 
@@ -47,6 +50,7 @@ function Login(props) {
 
     const [state, dispatch] = useReducer(reducer, { password: '', email: '', alerttxt: '', });
     const [isChecked, setIsChecked] = useState(false);
+    const [sent, setSent] =useState(false);
 
     const submitHandler = async (e) => {
 
@@ -64,22 +68,56 @@ function Login(props) {
         else
         {
             updateAlert("");
-            // const email = state.email;
-            // const password = state.password;
-            // try {
-            //
-            //     e.preventDefault();
-            //     const response = await login({ email , password });
-            //     if (response.success) {
-            //         console.log(response.message);
-            //         await AsyncStorage.setItem("token", response.data);
-            //         navigation.navigate("Home");
-            //     } else {
-            //         updateAlert("Invalid Login Details!");
-            //     }
-            // } catch (error) {
-            //     console.log(error.message);
-            // }
+            if(!sent)
+            {
+                if(!isChecked)
+                {
+                    const Email = state.email;
+                    const Password = state.password;
+                    const TypeOP = 'user';
+                    try {
+                        userLogin({ Email , Password }).then((response) => {
+
+                            if(response.hasOwnProperty('user'))
+                            {
+                                localStorage.setItem('Name', response.user.Name);
+                                localStorage.setItem('MobileNo', response.user.MobileNumber);
+                                localStorage.setItem('TypeOP', TypeOP);
+                                navigate('/professionals');
+                            }
+                            else {
+                                updateAlert("Authentication failed")
+                            }
+                        });
+                    } catch (error) {
+                        console.log(error.message);
+                    }
+                }
+                else {
+                    const Email = state.email;
+                    const Password = state.password;
+                    const TypeOP = 'pro';
+                    try {
+                        professionalLogin({ Email , Password }).then((response) => {
+
+
+                            if(response.hasOwnProperty('professional'))
+                                {
+                                localStorage.setItem('Name', response.professional.Name);
+                                localStorage.setItem('MobileNo', response.professional.MobileNumber);
+                                localStorage.setItem('TypeOP', TypeOP);
+                                navigate('/professionals');
+                            }
+                            else {
+                                updateAlert("Authentication failed")
+                            }
+                        });
+                    } catch (error) {
+                        console.log(error.message);
+                    }
+                }
+            }
+
         }
 
     };

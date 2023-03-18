@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from "./navbar";
 import Maingriditem from "../subcomponents/maingriditem";
 import { Button, Col, InputGroup, Row } from "react-bootstrap";
@@ -8,6 +8,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Formlabel from "../subcomponents/formlabel";
 import doctor from '../assets/gridassets/doctor.png'
 import Frontgriditem from "../subcomponents/frontgriditem";
+import { checklogin } from "../functions/loginfunc";
 
 const maingridArray  = [
     {image:doctor,text:'My name is tyyyy', rate:70, activeStars:3, noofcomments:67, category:'doctor'  },
@@ -31,9 +32,13 @@ const maingridArraymapped = maingridArray.map((data, id) =>
 })
 
 function Maingrid(props) {
+    useEffect(() => {
+        setLoggedIn(checklogin());
+    }, []);
+    const [loggedIn, setLoggedIn] = useState(false);
     return (
         <>
-        <Navbar/>
+        <Navbar loggedIn={loggedIn}/>
             <div style={styles.container}>
                 <Row>
                     <Col sm="3" style={{padding:'5vh 2vw 2vw 5vh'}}>

@@ -6,7 +6,6 @@ import SignUp from "./components/SignUp";
 import Checkout from "./Components_Payment/Checkout";
 import Otp from "./components/otpverification";
 import Maingrid from "./components/maingrid";
-//import AppointmentApp from "./components/components_Appointment/AppointmentApp";
 
 import ProfDetails from "./components/components_ProfDetails/ProfDetails";
 import ReviewForm from "./components/component_review/ReviewForm";
@@ -58,10 +57,6 @@ const router = createBrowserRouter([
         path :"/ShowReview",
         element: <ShowReview/>,
     },
-    {/*
-        path :"/AppointmentApp",
-        element: <AppointmentApp/>,
-*/}
 ]);
 
 function App() {
