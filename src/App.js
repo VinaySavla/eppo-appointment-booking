@@ -2,7 +2,7 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Landing from "./components/landing";
 import Login from "./components/login";
-//import SIgnUp from "./components/SignUp";
+import SignUp from "./components/SignUp";
 import Checkout from "./Components_Payment/Checkout";
 
 import {
@@ -20,12 +20,12 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login/>,
     },
-    /*{
+    {
         path: "/UserSignUp",
-        element: <SIgnUp/>,
+        element: <SignUp/>,
 
         
-    },*/
+    },
     {
         path :"/Checkout",
         element: <Checkout/>,
