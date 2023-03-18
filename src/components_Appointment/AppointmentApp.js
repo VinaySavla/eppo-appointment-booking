@@ -411,7 +411,7 @@ class AppointmentApp extends Component {
                         }
                       />
                       <RaisedButton
-                        style={{ display: "block", backgroundColor: "#00C853" }}
+                        style={{ display: "block", backgroundColor: "#00C853",marginTop: 20, maxWidth: 100 }}
                         label={
                           contactFormFilled
                             ? "Schedule"
@@ -427,7 +427,7 @@ class AppointmentApp extends Component {
                           })
                         }
                         disabled={!contactFormFilled || data.processed}
-                        style={{ marginTop: 20, maxWidth: 100 }}
+                       // style={{  }}
                       />
                     </section>
                   </p>
