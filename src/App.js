@@ -4,6 +4,9 @@ import Landing from "./components/landing";
 import Login from "./components/login";
 import SignUp from "./components/SignUp";
 import Checkout from "./Components_Payment/Checkout";
+import Otp from "./components/otpverification";
+import Maingrid from "./components/maingrid";
+
 import ProfProfiles from "./components/components_ProfProfiles/ProfProfiles";
 import ProfDetails from "./components/components_ProfDetails/ProfDetails";
 import ReviewForm from "./components/component_review/ReviewForm";
@@ -27,11 +30,21 @@ const router = createBrowserRouter([
         path: "/UserSignUp",
         element: <SignUp/>,
 
-        
+
+    },
+    {
+        path: "/otp",
+        element: <Otp/>,
+
+
     },
     {
         path :"/Checkout",
         element: <Checkout/>,
+    },
+    {
+        path :"/Professionals",
+        element: <Maingrid/>,
     },
     {
         path :"/ProfProfiles",

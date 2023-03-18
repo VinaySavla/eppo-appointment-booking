@@ -6,13 +6,13 @@ import React from "react";
 
 import eppologo from '../assets/eppo-logo-zip-file/png/logo-no-background.png';
 
-function navibar() {
+function navibar({loggedIn}) {
     return (
         <Navbar style={{background: '#FDFBE2'}} expand="lg" fixed="top">
             <Container  fluid style={{padding:10, paddingRight:'7vw', paddingLeft:'7vw', height:'13vh',}}>
                 <Navbar.Brand href="/" ><img alt={"Eppo"} src={eppologo} style={{height:'12vh'}}/></Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
-                <Navbar.Collapse id="navbarScroll">
+                {!loggedIn ? <Navbar.Collapse id="navbarScroll">
                     <Nav style={{marginLeft: 'auto'}}>
                         <Nav.Link href="/login" style={styles.Navlink}>Login</Nav.Link>
                     </Nav>
@@ -20,7 +20,8 @@ function navibar() {
                         <Nav.Link href="/usersignup" style={styles.Navlink2 }>SignUp</Nav.Link>
                     </Nav>
 
-                </Navbar.Collapse>
+                </Navbar.Collapse>: null }
+
             </Container>
         </Navbar>
     );
