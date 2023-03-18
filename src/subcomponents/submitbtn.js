@@ -26,7 +26,7 @@ function Submitbtn({text, secondary, onPress}) {
 
 const styles = {
     submitbtn:{
-        background: "#06283D",
+        background: "#0A2647",
         color: '#FDFBE2',
         padding: '1vh',
         textAlign: 'center',
@@ -35,8 +35,8 @@ const styles = {
         fontSize: '3vh',
     },
     secondarySubmitbtn:{
-        background: "#F7D65A",
-        color: '#06283D',
+        background: "#2C74B3",
+        color: '#ffffff',
         padding: '1vh',
         textAlign: 'center',
         textDecoration: 'none',

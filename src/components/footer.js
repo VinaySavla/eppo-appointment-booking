@@ -75,14 +75,14 @@ const styles = {
             padding:0,
             paddingTop: '1vh',
             fontFamily: 'Stick No Bills',
-            color: "#F7D65A",
+            color: "#2C74B3",
             fontSize: '250%',
-            borderBottom: "3px solid #06283D",
+            borderBottom: "3px solid #0A2647",
 
         },
     griddiv: {
         height: '30vh',
-        background:"#06283D",
+        background:"#0A2647",
         paddingLeft: '10vw',
         paddingRight: '10vw',
     },

@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import Navbar from "./navbar";
 import FooterAS from "./footer";
 import homework from "../assets/Home.jpg";
@@ -7,8 +7,30 @@ import officeimg from "../assets/industrial-style-office.jpg";
 import Submitbtn from "../subcomponents/submitbtn";
 import Formlabel from "../subcomponents/formlabel";
 import Inputbox from "../subcomponents/inputbox";
+import { useLocation, useNavigate } from "react-router-dom";
+import { register, verify } from "../apicalls/users";
+
+
 
 function OTP(props) {
+
+
+
+    const {state} = useLocation();
+
+    const navigate =  useNavigate();
+    try {
+
+        const { name, email, password, phone, address } = state;
+    }catch (error)
+    {
+        navigate('/');
+    }
+
+    const { name, email, password, phone, address, city } = state;
+
+
+
     function reducer(currentState, action) {
 
         switch (action.type) {
@@ -30,33 +52,33 @@ function OTP(props) {
         dispatch({ type: "alerttxt", value: alerttxt });
     }
 
-    const [state, dispatch] = useReducer(reducer, { otp: '', });
-
+    const [reducerState, dispatch] = useReducer(reducer, { otp: '', });
+    const [sent, setSent] = useState(false);
 
     const submitHandler = async (e) => {
 
-    if(state.otp === '') {
+    if(reducerState.otp === '') {
             updateAlert("Please enter a valid Otp");
         }
-        else
+        else if(!sent)
         {
+            setSent(true);
             updateAlert("");
-            // const email = state.email;
-            // const password = state.password;
-            // try {
-            //
-            //     e.preventDefault();
-            //     const response = await login({ email , password });
-            //     if (response.success) {
-            //         console.log(response.message);
-            //         await AsyncStorage.setItem("token", response.data);
-            //         navigation.navigate("Home");
-            //     } else {
-            //         updateAlert("Invalid OTP Details!");
-            //     }
-            // } catch (error) {
-            //     console.log(error.message);
-            // }
+            // console.log({name, email, password, phone, address, city});
+            const otp = reducerState.otp;
+            verify({
+                    name, email, password, phone, address, otp, city
+            }).then((response) => {
+                if(response.status === 'success')
+                {
+                    localStorage.setItem('name', name);
+                    localStorage.setItem('phone', phone);
+                    navigate('/');
+                }
+                else {
+                    updateAlert(response.status)
+                }
+            });
         }
 
     };
@@ -82,7 +104,7 @@ function OTP(props) {
                                 <Submitbtn text='Submit' onPress={submitHandler}/>
                                 <div style={{paddingTop:'2vh'}}>
                                     <Submitbtn text='Resend' secondary={true} />
-                                    <p style={{color:'red', fontSize:'2vh'}}>{state.alerttxt}</p>
+                                    <p style={{color:'red', fontSize:'2vh'}}>{reducerState.alerttxt}</p>
                                 </div>
 
                             </div>
@@ -112,7 +134,7 @@ const styles = {
         fontFamily: 'Lobster',
         color: '#FDFBE2',
         fontSize: '12vh',
-        textShadow: '7px 7px #06283D',
+        textShadow: '7px 7px #0A2647',
         paddingTop: '15vh',
     },
 
@@ -125,9 +147,9 @@ const styles = {
     subheadinggrid:
         {
             padding: '1vh',
-            borderBottom:'4px solid #06283D',
+            borderBottom:'4px solid #0A2647',
             fontFamily: 'Edu NSW ACT Foundation',
-            color: "#06283D",
+            color: "#0A2647",
             fontSize: '280%',
         },
 }

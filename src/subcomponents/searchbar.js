@@ -19,7 +19,7 @@ function Searchbar(props) {
                     placeholder="Search for a service in your area"
                     id="searchbarinput"
                 />
-                <Button className="search-button" style={{background:'#F7D65A', fontSize:'150%', }}>
+                <Button className="search-button" style={{background:'#2C74B3', fontSize:'150%', }}>
                    <FontAwesomeIcon icon={faSearch}/>
                 </Button>
             </InputGroup>
