@@ -32,7 +32,7 @@ const styles = {
         textAlign: 'center',
         textDecoration: 'none',
         display: 'inline-block',
-        fontSize: '150%',
+        fontSize: '3vh',
     },
     secondarySubmitbtn:{
         background: "#F7D65A",
@@ -41,7 +41,7 @@ const styles = {
         textAlign: 'center',
         textDecoration: 'none',
         display: 'inline-block',
-        fontSize: '150%',
+        fontSize: '3vh',
     }
 }
 
