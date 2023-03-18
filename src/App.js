@@ -4,6 +4,7 @@ import Landing from "./components/landing";
 import Login from "./components/login";
 import SignUp from "./components/SignUp";
 import Checkout from "./Components_Payment/Checkout";
+import Otp from "./components/otpverification";
 
 import {
     createBrowserRouter,
@@ -24,7 +25,13 @@ const router = createBrowserRouter([
         path: "/UserSignUp",
         element: <SignUp/>,
 
-        
+
+    },
+    {
+        path: "/otp",
+        element: <Otp/>,
+
+
     },
     {
         path :"/Checkout",
