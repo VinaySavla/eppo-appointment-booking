@@ -5,3 +5,8 @@ export function checklogin (){
     }
     return false;
 }
+export function getUID (){
+    const UID = localStorage.getItem("UID");
+
+    return UID;
+}

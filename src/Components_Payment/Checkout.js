@@ -16,8 +16,13 @@ import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Navibar from "../components/navbar";
+import { useLocation, useNavigate } from "react-router-dom";
+import { appointmentsData, verify } from "../apicalls/users";
+import { getUID } from "../functions/loginfunc";
+import { useState } from "react";
 
 function Copyright() {
+
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
@@ -32,26 +37,64 @@ function Copyright() {
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <AddressForm />;
-    case 1:
-      return <PaymentForm />;
-    case 2:
-      return <Review />;
-    default:
-      throw new Error('Unknown step');
-  }
-}
+
 
 const theme = createTheme();
 
 export default function Checkout() {
+  const navigate = useNavigate();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [appointmentId, setAPPid] = useState();
+  const {state} = useLocation();
+  const data = state.data;
 
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return <AddressForm />;
+      case 1:
+        return <PaymentForm />;
+      case 2:
+        return <Review data={data}/>;
+      default:
+        throw new Error('Unknown step');
+    }
+  }
   const handleNext = () => {
-    setActiveStep(activeStep + 1);
+    if(activeStep === 2 ){
+      console.log("here")
+      const Tid = Math.floor((Math.random() * 1000) + 1);
+      const UID = getUID();
+      const payload = {
+        "Date":data.dateTime,
+          "TransactionId":Tid.toString(),
+          "TransactionStatus":"Sucessful",
+          "AppointmentStatus":"Done",
+          "PaidAmount":data.Price,
+          "UserId":UID,
+          "ProfessionalId":data.Id,
+      }
+      appointmentsData(payload).then((response) => {
+
+
+        if(response.Id != '')
+        {
+          console.log(response);
+          setAPPid(response.Id);
+          setActiveStep(activeStep + 1);
+
+        }
+        else {
+          console.log("Authentication failed")
+        }
+      });
+    }
+    else{
+      setActiveStep(activeStep + 1);
+
+    }
+
+
   };
 
   const handleBack = () => {
@@ -80,10 +123,13 @@ export default function Checkout() {
                 Thank you for your order.
               </Typography>
               <Typography variant="subtitle1">
-                Your order number is #2001539. We have emailed your order
+                Your Appointment Id is {appointmentId}. We have emailed your order
                 confirmation, and will send you an update when your order has
                 shipped.
               </Typography>
+              <Button onClick={()=>{navigate('/Dashboard')}} sx={{ mt: 3, ml: 1 }}>
+                Go To Dashboard
+              </Button>
             </React.Fragment>
           ) : (
             <React.Fragment>

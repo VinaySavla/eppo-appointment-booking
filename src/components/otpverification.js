@@ -76,6 +76,7 @@ function OtpVerify(props) {
                     localStorage.setItem('Name', Name);
                     localStorage.setItem('MobileNo', MobileNumber);
                     localStorage.setItem('TypeOP', TypeOP);
+                    localStorage.setItem('UID', response.createResponse.ID);
                     navigate('/');
                 }
                 else {

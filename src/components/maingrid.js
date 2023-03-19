@@ -6,35 +6,52 @@ import Form from "react-bootstrap/Form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Formlabel from "../subcomponents/formlabel";
-import doctor from '../assets/gridassets/doctor.png'
-import Frontgriditem from "../subcomponents/frontgriditem";
+import lawyer from '../assets/gridassets/lawyer.png'
 import { checklogin } from "../functions/loginfunc";
-
-const maingridArray  = [
-    {image:doctor,text:'My name is tyyyy', rate:70, activeStars:3, noofcomments:67, category:'doctor'  },
-    {image:doctor,text:'My name is tyyyy', rate:70, activeStars:3, noofcomments:67, category:'doctor'  },
-    {image:doctor,text:'My name is tyyyy', rate:70, activeStars:3, noofcomments:67, category:'doctor'  },
-    {image:doctor,text:'My name is tyyyy', rate:70, activeStars:3, noofcomments:67, category:'doctor'  },
-    {image:doctor,text:'My name is tyyyy', rate:70, activeStars:3, noofcomments:67, category:'doctor'  },
-    {image:doctor,text:'My name is tyyyy', rate:70, activeStars:3, noofcomments:67, category:'doctor'  },
-    {image:doctor,text:'My name is tyyyy', rate:70, activeStars:3, noofcomments:67, category:'doctor'  },
-];
-
-const maingridArraymapped = maingridArray.map((data, id) =>
-{
-    return(
-        <>
-            <Col sm="4" className="mt-3">
-                <Maingriditem image={data.image} category={data.category} text={data.text} rate={data.rate} activeStars={data.activeStars} noofcomments={data.noofcomments}/>
-            </Col>
-        </>
-    )
-})
+import { allProfessionalData } from "../apicalls/users";
+import { useNavigate } from "react-router-dom";
 
 function Maingrid(props) {
-    useEffect(() => {
+    const navigate =  useNavigate();
+    function bookingNavigation(id)
+    {
+        navigate('/ProfDetails',{ state: {data: id} });
+    }
+
+    const [maingridArray, setMainGrid]=useState();
+    const [maingridArraymapped, setMgam] = useState();
+
+    useEffect(()=>{
         setLoggedIn(checklogin());
-    }, []);
+        try {
+            allProfessionalData().then((response) => {
+                if(response.hasOwnProperty('professionals'))
+                {
+                    const mg = response.professionals;
+                    setMainGrid(response.professionals[0]);
+                    console.log(maingridArray);
+                    setMgam( mg.map((data, id) =>
+                    {
+                        return(
+                            <>
+                                <Col sm="4" className="mt-3">
+                                    <Maingriditem image={lawyer} category={data.Profession} text={data.Name} rate={data.Price} activeStars={data.Rating} noofcomments={Math.floor((Math.random() * 100) + 1)}
+                                                  onPress={()=>{
+                                                      bookingNavigation(data);
+                                                  }}/>
+                                </Col>
+                            </>
+                        )
+                    }));
+                }
+                else {
+                    console.log(response)
+                }
+            });
+        } catch (error) {
+            console.log(error.message);
+        }
+    },[]);
     const [loggedIn, setLoggedIn] = useState(false);
     return (
         <>

@@ -82,6 +82,7 @@ function Login(props) {
                             {
                                 localStorage.setItem('Name', response.user.Name);
                                 localStorage.setItem('MobileNo', response.user.MobileNumber);
+                                localStorage.setItem('UID', response.user.Id);
                                 localStorage.setItem('TypeOP', TypeOP);
                                 navigate('/professionals');
                             }
