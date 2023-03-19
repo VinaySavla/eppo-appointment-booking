@@ -44,7 +44,34 @@ function Landing(props) {
             text: 'Book a Salon Appointment',
         },
 ]
+
+    const gridData2 = [
+        {
+            image: doctor,
+            text: 'Book a Mechanic\'s Appointment',
+        },
+        {
+            image: lawyer,
+            text: 'Consult a Optometrist',
+        },{
+            image: dentist,
+            text: 'Book a Driver\'s Appointment',
+        },{
+            image: barber,
+            text: 'Book a Haircut Appointment',
+        },
+    ]
     const gridopt = gridData.map((data, id) =>
+    {
+        return(
+            <>
+                <Col key={id}>
+                    <Frontgriditem image={data.image} text={data.text}/>
+                </Col>
+            </>
+        )
+    })
+    const gridopt2 = gridData2.map((data, id) =>
     {
         return(
             <>
@@ -75,7 +102,7 @@ function Landing(props) {
                             {gridopt}
                         </Row>
                         <Row style={{paddingBottom:'8vh'}}>
-                            {gridopt}
+                            {gridopt2}
                         </Row>
                     </div>
                 </AnimationOnScroll>

@@ -14,6 +14,7 @@ import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
+import Dashboard from "./Components_Prof/Dashboard";
 
 const router = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
     {
         path :"/ShowReview",
         element: <ShowReview/>,
+    },
+    {
+        path :"/Dashboard",
+        element: <Dashboard/>,
     },
 ]);
 

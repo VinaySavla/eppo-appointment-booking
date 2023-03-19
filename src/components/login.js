@@ -106,6 +106,7 @@ function Login(props) {
                                 {
                                 localStorage.setItem('Name', response.professional.Name);
                                 localStorage.setItem('MobileNo', response.professional.MobileNumber);
+                                    localStorage.setItem('UID', response.professional.Id);
                                 localStorage.setItem('TypeOP', TypeOP);
                                 navigate('/professionals');
                             }

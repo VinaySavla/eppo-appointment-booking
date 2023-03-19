@@ -10,3 +10,16 @@ export function getUID (){
 
     return UID;
 }
+export function getPID (){
+    const UID = localStorage.getItem("UID");
+    const TypeOP = localStorage.getItem('TypeOP');
+    if(TypeOP == 'pro')
+    {
+        return UID;
+    }
+    else
+    {
+        return 'Userbro'
+    }
+
+}

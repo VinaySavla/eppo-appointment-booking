@@ -69,7 +69,7 @@ export default function Checkout() {
         "Date":data.dateTime,
           "TransactionId":Tid.toString(),
           "TransactionStatus":"Sucessful",
-          "AppointmentStatus":"Done",
+          "AppointmentStatus":"Pending",
           "PaidAmount":data.Price,
           "UserId":UID,
           "ProfessionalId":data.Id,

@@ -96,3 +96,14 @@ export const appointmentsData = async(payload)=>{
     return error.response.data
   }
 }
+
+export const appointmentsDataUpdate = async(id, payload)=>{
+  try {
+    const url = '/appointmentsData/'+id.toString();
+    const response = await axiosInstance.put(url, payload)
+    return response.data
+
+  } catch (error) {
+    return error.response.data
+  }
+}
