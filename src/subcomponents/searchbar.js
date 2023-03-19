@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faSearch } from '@fortawesome/free-solid-svg-icons'
 import './all.css';
 
-function Searchbar(props) {
+function Searchbar({onChange, onPress}) {
     return (
         <>
             <InputGroup style={{height:'8.5vh'}}>
@@ -18,8 +18,9 @@ function Searchbar(props) {
                 <Form.Control style={{border: 'none', fontSize:'150%', paddingLeft:'2vw'}}
                     placeholder="Search for a service in your area"
                     id="searchbarinput"
+                              onChange={onChange}
                 />
-                <Button className="search-button" style={{background:'#2C74B3', fontSize:'150%', }}>
+                <Button className="search-button" style={{background:'#2C74B3', fontSize:'150%', }} onClick={onPress}>
                    <FontAwesomeIcon icon={faSearch}/>
                 </Button>
             </InputGroup>

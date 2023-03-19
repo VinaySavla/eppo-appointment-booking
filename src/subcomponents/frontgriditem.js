@@ -1,10 +1,10 @@
 import React from 'react';
 import { Col, Row } from "react-bootstrap";
 
-function Frontgriditem({image, text}) {
+function Frontgriditem({image, text, onPress, link}) {
     return (
 
-        <a>
+        <a href={link} style={{textDecoration:'none'}}>
             <div style={styles.maindiv}>
                 <Row>
                     <Col sm={4} ><img src={image} style={{maxHeight:'11vh'}} alt="Service"/></Col>

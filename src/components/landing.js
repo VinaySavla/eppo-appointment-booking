@@ -19,14 +19,16 @@ import electritian from '../assets/gridassets/electritian.png'
 import plumber from '../assets/gridassets/plumber.jpg'
 import carpenter from '../assets/gridassets/carpenter.png'
 import { checklogin } from "../functions/loginfunc";
+import { useNavigate } from "react-router-dom";
 
 function Landing(props) {
+    const navigate = useNavigate();
     useEffect(() => {
         setLoggedIn(checklogin());
     }, []);
     const [loggedIn, setLoggedIn] = useState(false);
     const [user, setUser] = useState();
-
+    const [search, setSearch] = useState('');
 
     const gridData = [
         {
@@ -66,7 +68,7 @@ function Landing(props) {
         return(
             <>
                 <Col key={id}>
-                    <Frontgriditem image={data.image} text={data.text}/>
+                    <Frontgriditem image={data.image} text={data.text} link='/professionals'/>
                 </Col>
             </>
         )
@@ -88,7 +90,11 @@ function Landing(props) {
         <>
             <Navbar loggedIn={loggedIn}/>
             <div style={styles.bodydiv}>
-                <Searchbar/>
+                <Searchbar onChange={(searchword)=>{setSearch(searchword.target.value)}} onPress={()=>{
+                    if(search != '') {
+                        navigate('/professionals', { state: { keyword: search } })
+                    }
+                }}/>
             </div>
             <div style={styles.griddiv}>
                 <div style={styles.headinggrid}>
