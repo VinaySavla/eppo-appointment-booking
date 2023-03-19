@@ -47,7 +47,7 @@ function preventDefault(event) {
 // UserId
 //     :
 //     2
-export default function Orders({data}) {
+export default function Orders({data, TypeOp}) {
   function changeStatus(Id) {
     data.AppointmentStatus = "Done";
     appointmentsDataUpdate(Id, { ...data, AppointmentStatus : "Done" }).then((response)=>
@@ -56,46 +56,93 @@ export default function Orders({data}) {
     })
   }
 
-  return (
-    <React.Fragment>
-      <Title>Recent Appointments</Title>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Appointment Id</TableCell>
-            <TableCell align="right">Sale Amount</TableCell>
-            <TableCell align="centre">Action</TableCell>
+  if(TypeOp == 'pro')
+  {
+    return (
+        <React.Fragment>
+          <Title>Recent Appointments</Title>
+          <Table size="small">
+            <TableHead>
+              <TableRow>
+                <TableCell>Date</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell>Appointment Id</TableCell>
+                <TableCell align="right">Sale Amount</TableCell>
+                <TableCell align="centre">Action</TableCell>
 
 
 
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((row) => (
-            <TableRow key={row.Id}>
-              <TableCell>{row.Date}</TableCell>
-              <TableCell>{row.user.Name}</TableCell>
-              <TableCell>{row.Id}</TableCell>
-              <TableCell align="right">Rs. {row.PaidAmount}</TableCell>
-              <TableCell>
-                {  row.AppointmentStatus == "Done" ? <Button variant="outlined" color="error" disabled>
-                  {row.AppointmentStatus}
-                </Button> : <Button variant="contained" color="success" onClick={()=>{
-                  changeStatus(row.Id);
-                }}>
-                  Approve
-                </Button>  }
-              </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map((row) => (
+                  <TableRow key={row.Id}>
+                    <TableCell>{row.Date}</TableCell>
+                    <TableCell>{row.user.Name}</TableCell>
+                    <TableCell>{row.Id}</TableCell>
+                    <TableCell align="right">Rs. {row.PaidAmount}</TableCell>
+                    <TableCell>
+                      {  row.AppointmentStatus == "Done" ? <Button variant="outlined" color="error" disabled>
+                        {row.AppointmentStatus}
+                      </Button> : <Button variant="contained" color="success" onClick={()=>{
+                        changeStatus(row.Id);
+                      }}>
+                        Approve
+                      </Button>  }
+                    </TableCell>
 
 
 
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+                  </TableRow>
+              ))}
+            </TableBody>
+          </Table>
 
-    </React.Fragment>
-  );
+        </React.Fragment>
+    );
+  }
+  else {
+    return(
+        <React.Fragment>
+          <Title>Recent Appointments</Title>
+          <Table size="small">
+            <TableHead>
+              <TableRow>
+                <TableCell>Date</TableCell>
+                <TableCell>Service Provider</TableCell>
+                <TableCell>Appointment Id</TableCell>
+                <TableCell align="right">Sale Amount</TableCell>
+                <TableCell align="centre">Action</TableCell>
+
+
+
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map((row) => (
+                  <TableRow key={row.Id}>
+                    <TableCell>{row.Date}</TableCell>
+                    <TableCell>{row.professional.Name}</TableCell>
+                    <TableCell>{row.Id}</TableCell>
+                    <TableCell align="right">Rs. {row.PaidAmount}</TableCell>
+                    <TableCell>
+                      {  row.AppointmentStatus == "Done" ? <Button variant="outlined" color="error" disabled>
+                        Scheduled
+                      </Button> : <Button variant="contained" color="success" disabled
+                      >
+                        Waiting
+                      </Button>  }
+                    </TableCell>
+
+
+
+                  </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+
+        </React.Fragment>
+    )
+  }
+
 }

@@ -87,6 +87,18 @@ export const professionalData = async(id)=>{
     return error.response.data
   }
 }
+
+export const userAppointment = async(id)=>{
+  try {
+    const url = '/userAppointment/'+id.toString();
+    const response = await axiosInstance.get(url)
+    return response.data
+
+  } catch (error) {
+    return error.response.data
+  }
+}
+
 export const appointmentsData = async(payload)=>{
   try {
     const response = await axiosInstance.post('/appointmentsData',payload)

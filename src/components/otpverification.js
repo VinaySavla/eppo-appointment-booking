@@ -125,7 +125,7 @@ function OtpVerify(props) {
                                     <Formlabel text='Enter OTP'/>
                                     <Inputbox type="password"
                                               className="form-control"
-                                              placeholder="Enter password"
+                                              placeholder="Enter OTP"
                                               onChange={updateOTP}
                                     />
                                 </div>

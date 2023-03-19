@@ -8,8 +8,8 @@ import Navbar from "../components/navbar";
 import Orders from './Orders';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { checklogin, getPID } from "../functions/loginfunc";
-import { professionalData } from "../apicalls/users";
+import { checklogin, getPID, getUID } from "../functions/loginfunc";
+import { professionalData, userAppointment } from "../apicalls/users";
 
 
 function DashboardContent() {
@@ -26,10 +26,12 @@ function DashboardContent() {
         }
 
     }, []);
+    let TypeOP;
     function getApp()
     {
     if(getPID() != 'Userbro'){
         const UID = getPID();
+        TypeOP = 'pro';
             professionalData(UID).then((response)=>{
                 const mb = response.professionals[0].appointment;
                 setAppointment(mb)
@@ -37,12 +39,13 @@ function DashboardContent() {
             })
         }
     else {
-        // const UID = getUID();
-        // professionalData(UID).then((response)=>{
-        //     const mb = response.professionals[0].appointment;
-        //     setAppointment(mb)
-        //     // console.log(appointment)
-        // })
+        const UID = getUID();
+        TypeOP = 'user';
+        userAppointment(UID).then((response)=>{
+            const mb = response.appointments;
+            setAppointment(mb)
+            // console.log(appointment)
+        })
     }
     }
     getApp();
@@ -71,7 +74,7 @@ function DashboardContent() {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders data = {appointment}/>
+                  <Orders data = {appointment} TypeOp={TypeOP}/>
                 </Paper>
               </Grid>
             </Grid>

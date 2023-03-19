@@ -27,9 +27,13 @@ function navibar({loggedIn}) {
                         <Nav.Link href="/usersignup" style={styles.Navlink2 }>SignUp</Nav.Link>
                     </Nav>
 
-                </Navbar.Collapse>: <Nav className="d-flex">
+                </Navbar.Collapse>: <Navbar.Collapse>
+                    <Nav style={{marginLeft: 'auto'}}>
+                        <Nav.Link href="/Dashboard" style={styles.Navlink}>Dashboard</Nav.Link>
+                    </Nav>
+                    <Nav className="d-flex">
                     <Nav.Link onClick={logout} style={styles.Navlink2 }>Logout</Nav.Link>
-                </Nav>}
+                </Nav></Navbar.Collapse>}
 
             </Container>
         </Navbar>
