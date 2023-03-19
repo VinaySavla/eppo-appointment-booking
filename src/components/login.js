@@ -108,7 +108,7 @@ function Login(props) {
                                 localStorage.setItem('MobileNo', response.professional.MobileNumber);
                                     localStorage.setItem('UID', response.professional.Id);
                                 localStorage.setItem('TypeOP', TypeOP);
-                                navigate('/professionals');
+                                navigate('/dashboard');
                             }
                             else {
                                 updateAlert("Authentication failed")
