@@ -54,11 +54,6 @@ export default function ProfilePage() {
                     <MDBCardText>Charges</MDBCardText>
                     <MDBCardText >Rs. {data.Price}</MDBCardText>
                   </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-5">
-
-                    <MDBCardText>12 Month Subscribtion</MDBCardText>
-                    <MDBCardText>Rs. {data.Price*11}</MDBCardText>
-                  </MDBListGroupItem>
                 </MDBListGroup>
             </MDBCard>
   </MDBCol>
